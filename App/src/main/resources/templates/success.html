@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Success</title>
-
-<style>
-  body {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile UI</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      --
+    />
+    <style>
+        body {
     margin: 0;
     height: 100vh;
     font-family: Arial, sans-serif;
@@ -59,20 +64,203 @@
   .hidden {
     display: none;
   }
-</style>
-</head>
 
-<body>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+      }
 
-<div class="nav">
-  <h3>Welcome <span th:text="${name}">User</span></h3>
+      body {
+        background: #f6faf9;
+      }
 
-  <form action="/logout" method="post">
-    <button type="submit">Logout</button>
-  </form>
-</div>
+      .layout {
+        display: flex;
+      }
 
-<div class="container">
+      /* Sidebar */
+      .sidebar {
+        width: 260px;
+        background: #ffffff;
+        padding: 20px;
+        height: 100vh;
+        border-radius: 20px;
+      }
+
+      .profile {
+        text-align: center;
+      }
+      .profile img {
+        width: 40px;
+        border-radius: 50%;
+      }
+      .profile p {
+        font-size: 13px;
+        color: gray;
+      }
+
+      .search {
+        width: 100%;
+        margin: 15px 0;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+      }
+
+      .menu {
+        list-style: none;
+      }
+      .menu li {
+        padding: 10px;
+        margin: 6px 0;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      .menu li i {
+        margin-right: 10px;
+      }
+      .menu li.active {
+        background: #e6f2ff;
+        color: #0066ff;
+      }
+
+      /* Main */
+      .main {
+        flex: 1;
+        padding: 20px;
+      }
+
+      /* Topbar */
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: white;
+        padding: 15px;
+        border-radius: 12px;
+      }
+      .user {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .user img {
+        width: 40px;
+        border-radius: 50%;
+      }
+
+      /* Card */
+      .card {
+        background: white;
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: 20px;
+      }
+
+      .card h2 {
+        margin-bottom: 15px;
+        color: #0066ff;
+      }
+
+      /* Gradient bar */
+      .gradient {
+        height: 60px;
+        border-radius: 12px;
+        background: linear-gradient(90deg, #7dd3fc, #a7f3d0, #e9d5ff);
+      }
+
+      /* Profile Info */
+      .profile-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: -30px;
+      }
+      .profile-info img {
+        width: 70px;
+        border-radius: 50%;
+        border: 4px solid white;
+      }
+      .profile-info button {
+        margin-left: auto;
+        padding: 8px 18px;
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      /* Form */
+      .form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 25px;
+      }
+      .form label {
+        font-size: 14px;
+        color: #444;
+      }
+      .form input,
+      .form select {
+        width: 100%;
+        margin-top: 5px;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ff5d5d;
+        background: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="profile">
+          <img src="profile.jpg" alt="Profile" />
+          <h3>Welcome <span th:text="${name}">User</span></h3>
+        </div>
+
+        <input type="text" placeholder="Search" class="search" />
+
+        <ul class="menu">
+          <button type="submit">Save Changes</button>
+          <li><i class="fa-solid fa-table-columns"></i> Dashboard</li>
+          <li><i class="fa-solid fa-book"></i> Courses</li>
+          <li><i class="fa-solid fa-user-graduate"></i> Students</li>
+          <li><i class="fa-solid fa-video"></i> Live classes</li>
+          <li><i class="fa-solid fa-calendar"></i> Session details</li>
+          <li><i class="fa-solid fa-record-vinyl"></i> Recording</li>
+          <li><i class="fa-solid fa-certificate"></i> Certificates</li>
+          <li><i class="fa-solid fa-clipboard-check"></i> Attendance</li>
+          <li class="active"><i class="fa-solid fa-gear"></i> Setting</li>
+          <li><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
+        </ul>
+      </aside>
+
+      <!-- Main -->
+      <main class="main">
+        <!-- Top bar -->
+        <div class="topbar">
+          <div class="logo">📚</div>
+          <div class="user">
+            <img src="profile.jpg" />
+            <div>
+              <h3>Welcome <span th:text="${name}">User</span></h3>
+              <div>
+              <form action="/logout" method="post">
+   				 <button type="submit">Logout</button>
+  				</form></div>
+            </div>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+        </div>
+
+        <!-- Profile Card -->
+        <div class="container">
   <div class="card">
 
     <h2>Profile</h2>
@@ -94,11 +282,14 @@
   </div>
 </div>
 
-<script>
-  function showForm() {
-    document.getElementById("updateForm").classList.remove("hidden");
-  }
-</script>
+        </section>
+      </main>
+    </div>
 
-</body>
+    <script>
+      function showForm() {
+        document.getElementById("updateForm").classList.remove("hidden");
+      }
+    </script>
+  </body>
 </html>
